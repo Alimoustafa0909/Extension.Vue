@@ -34,7 +34,7 @@ module.exports = {
       {
         patterns: [
           {
-            from: path.resolve(`src/manifest.${process.env.NODE_ENV}.json`),
+            from: path.resolve(`src/manifest.json`),
             to: `${path.resolve('dist')}/manifest.json`
           },
           {
