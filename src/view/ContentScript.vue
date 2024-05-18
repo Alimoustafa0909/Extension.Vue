@@ -6,6 +6,13 @@
 import { onMounted } from 'vue';
 import Swal from 'sweetalert2';
 
+
+onMounted(() => {
+  // Listen for the start activity message from the popup
+  handleOperations();
+  // Listen for messages from the background script
+});
+
 // Function to detect forms on the page
 const detectForms = () => {
   const forms = document.querySelectorAll('form');
@@ -60,11 +67,6 @@ function handleOperations () {
 
 }
 
-onMounted(() => {
-  // Listen for the start activity message from the popup
-handleOperations();
-  // Listen for messages from the background script
-});
 </script>
 
 <style scoped>

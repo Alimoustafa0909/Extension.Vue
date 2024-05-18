@@ -1,11 +1,15 @@
 chrome.runtime.onMessage.addListener(async function(message, sender, sendResponse) {
 
+
     if (message.action === 'start_activity') {
-        if (sender.tab?.id !== undefined) {
-            chrome.tabs.sendMessage(sender.tab.id, { action: 'start_detecting' });
-        } else {
-            console.error("No sender tab found.");
-        }
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            const tabId = tabs[0]?.id;
+            if (tabId !== undefined) {
+                chrome.tabs.sendMessage(tabId, { action: 'start_detecting' });
+            } else {
+                console.error("No active tab found.");
+            }
+        });
     }
 
     if (message.action === 'form_detected') {
