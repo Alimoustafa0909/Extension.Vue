@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import Swal from 'sweetalert2';
+import swal from 'sweetalert2';
 
 
 onMounted(() => {
@@ -44,20 +44,24 @@ const detectForms = () => {
 
 function handleOperations () {
   chrome.runtime.onMessage.addListener((message) => {
-    if (message.action === 'start_detecting') {
+    if
+
+    (message.action === 'start_detecting') {
+
+      console.log('helllllo')
       detectForms();
     }
 
     if (message.type === 'quote') {
       // Display the quote using SweetAlert2
-      Swal.fire({
+      swal.fire({
         title: 'Random Quote',
         text: message.content,
         icon: 'info',
       });
     } else if (message.type === 'image') {
       // Display the image URL using SweetAlert2
-      Swal.fire({
+      swal.fire({
         title: 'Random Image',
         imageUrl: message.url,
         imageAlt: 'Random Image',
