@@ -11,6 +11,7 @@
     "build-watch": "vue-cli-service  --env.NODE_ENV=development build-watch --mode development"
   },
   "dependencies": {
+    "sweetalert2": "^11.11.0",
     "vue": "^3.2.13"
   },
   "devDependencies": {
