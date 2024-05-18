@@ -1,4 +1,13 @@
 chrome.runtime.onMessage.addListener(async function(message, sender, sendResponse) {
+
+    if (message.action === 'start_activity') {
+        if (sender.tab?.id !== undefined) {
+            chrome.tabs.sendMessage(sender.tab.id, { action: 'start_detecting' });
+        } else {
+            console.error("No sender tab found.");
+        }
+    }
+
     if (message.action === 'form_detected') {
         try {
             // Fetch a random quote from the API
@@ -49,4 +58,5 @@ async function fetchRandomImage(): Promise<string> {
         console.error('Error fetching image:', error);
         throw error; // Propagate the error to the caller
     }
+
 }
