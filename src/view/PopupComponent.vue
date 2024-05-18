@@ -9,13 +9,8 @@ import { onMounted } from 'vue';
 
 const startActivity = () => {
   // Send message to content script to start activity
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    if (tabs[0].id !== undefined) {
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'start_activity' });
+      chrome.runtime.sendMessage({ action: 'start_activity' });
     }
-  });
-};
-
 // You can use onMounted if you need to perform any setup when the component is mounted
 onMounted(() => {
   // Perform any setup if necessary
