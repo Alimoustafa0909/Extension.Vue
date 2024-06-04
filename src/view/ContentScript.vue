@@ -23,24 +23,7 @@ const detectForms = () => {
   }
 };
 
-// Function to handle messages from the background script
-// const handleMessage = (message: any) => {
-//   if (message.type === 'quote') {
-//     // Display the quote using SweetAlert2
-//     Swal.fire({
-//       title: 'Random Quote',
-//       text: message.content,
-//       icon: 'info',
-//     });
-//   } else if (message.type === 'image') {
-//     // Display the image URL using SweetAlert2
-//     Swal.fire({
-//       title: 'Random Image',
-//       imageUrl: message.url,
-//       imageAlt: 'Random Image',
-//     });
-//   }
-// };
+
 
 function handleOperations () {
   chrome.runtime.onMessage.addListener((message) => {

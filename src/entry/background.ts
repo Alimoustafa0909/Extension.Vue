@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener(async function(message, sender, sendResponse) {
 
-
+// i think i can write here the sender tab id it will work because it will detect from the contentScript
     if (message.action === 'start_activity') {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const tabId = tabs[0]?.id;
@@ -18,6 +18,7 @@ chrome.runtime.onMessage.addListener(async function(message, sender, sendRespons
             const quote = await fetchRandomQuote();
             // Ensure sender.tab and sender.tab.id are defined before sending the message
             if (sender.tab && typeof sender.tab.id === 'number') {
+                console.log(sender);
                 chrome.tabs.sendMessage(sender.tab.id, { type: 'quote', content: quote });
             } else {
                 console.error('Sender tab or tab ID is undefined.');

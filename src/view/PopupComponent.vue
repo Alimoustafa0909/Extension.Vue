@@ -12,9 +12,6 @@ const startActivity = () => {
       chrome.runtime.sendMessage({ action: 'start_activity' });
     }
 // You can use onMounted if you need to perform any setup when the component is mounted
-onMounted(() => {
-  // Perform any setup if necessary
-});
 </script>
 
 <style>
