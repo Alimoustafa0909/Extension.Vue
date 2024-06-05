@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
-
 const startActivity = () => {
   // Send message to content script to start activity
       chrome.runtime.sendMessage({ action: 'start_activity' });
