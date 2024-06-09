@@ -44,6 +44,7 @@ module.exports = {
         ]
       }
     ])
+    config.optimization.minimize(false) //prevent minify code to help debug
   },
   configureWebpack: {
     output: {

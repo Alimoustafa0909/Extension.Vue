@@ -8,12 +8,13 @@ import swal from 'sweetalert2';
 
 
 onMounted(() => {
-  // Listen for the start activity message from the popup
-  handleOperations();
   // Listen for messages from the background script
+  handleOperations();
+ 
 });
 
-// Function to detect forms on the page
+
+// 4-He Try to detect if there is any form on the page or not and after that he send message to the background
 const detectForms = () => {
   const forms = document.querySelectorAll('form');
   if (forms.length > 0) {
@@ -24,17 +25,16 @@ const detectForms = () => {
 };
 
 
-
+//3- after the start activity function send to the content script  'detecting' he fire the detectForm() function
 function handleOperations () {
   chrome.runtime.onMessage.addListener((message) => {
-    if
-
-    (message.action === 'start_detecting') {
+    if(message.action === 'detecting') {
 
       console.log('helllllo')
       detectForms();
     }
 
+    //6- he listens for the background if he should display an image or quote ?
     if (message.type === 'quote') {
       // Display the quote using SweetAlert2
       swal.fire({
@@ -56,6 +56,6 @@ function handleOperations () {
 
 </script>
 
-<style scoped>
+<style >
 /* Add any styles you need for this component */
 </style>

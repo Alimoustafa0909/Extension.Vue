@@ -1,16 +1,18 @@
 chrome.runtime.onMessage.addListener(async function (message, sender, sendResponse) {
+     // 1-  First when we click the start activity and call the startactivty function underneath
     if (message.action === 'start_activity') {
         startActivity();
         console.log('elahly');
     }
+    //5-he listen to the message and check if there is form or not and according to that he fetch a (quote-image)
 
-    if (message.action === 'form_detected') {
+   else if (message.action === 'form_detected') {
         try {
             const quote = await fetchRandomQuote();
-
+            //there is typescript here if we removed the if condition he give us an error 
             if (sender.tab && sender.tab.id !== undefined) {
                 chrome.tabs.sendMessage(sender.tab.id, { type: 'quote', content: quote });
-            } else {
+            } else  {
                 console.error('Sender tab is undefined.');
             }
         } catch (error) {
@@ -30,10 +32,12 @@ chrome.runtime.onMessage.addListener(async function (message, sender, sendRespon
         }
     }
 });
-
+// 2- when the function called here it check if there is any Tab found and send the Id and message to content Script
+// to check if there is any form in the page or not
 function startActivity() {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        const tabId = tabs[0]?.id;
+        //there is typescript here if we removed the tabId!== undefined compiler will give us an error 
+        const tabId = tabs[0].id;
         if (tabId !== undefined) {
             chrome.tabs.sendMessage(tabId, { action: 'detecting' });
         } else {
